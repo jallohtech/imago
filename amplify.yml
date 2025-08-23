@@ -9,6 +9,8 @@ applications:
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
         # Node.js version
         NODE_VERSION: '20'
+        # Disable Turbopack for Amplify builds
+        TURBOPACK: '0'
     backend:
       phases:
         build:
@@ -17,12 +19,15 @@ applications:
       phases:
         preBuild:
           commands:
+            - echo "Node version:"
+            - node --version
+            - npm --version
             - echo "Installing dependencies..."
             - npm ci
         build:
           commands:
-            - echo "Building Next.js application..."
-            - npm run build
+            - echo "Building Next.js application without Turbopack..."
+            - npm run build -- --no-turbopack || next build
       artifacts:
         baseDirectory: .next
         files:
