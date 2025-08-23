@@ -1,7 +1,6 @@
 /**
  * TypeScript interfaces for Elasticsearch configurations and responses
  */
-
 // Elasticsearch Configuration Types
 export interface ElasticsearchConfig {
   node: string;
