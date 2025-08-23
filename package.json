@@ -1,9 +1,19 @@
 {
-  "name": "${PROJECT_NAME}",
+  "name": "imago-media-search",
   "version": "1.0.0",
-  "description": "",
+  "description": "IMAGO Coding Challenge",
   "main": "dist/index.js",
   "scripts": {
+    "dev": "./scripts/docker-local.sh start",
+    "dev:windows": "start-dev.bat",
+    "stop": "./scripts/docker-local.sh stop",
+    "stop:windows": "stop-dev.bat",
+    "logs": "./scripts/docker-local.sh logs",
+    "logs:windows": "scripts\\docker-local.bat logs",
+    "status": "./scripts/docker-local.sh status",
+    "status:windows": "scripts\\docker-local.bat status",
+    "clean": "./scripts/docker-local.sh cleanup",
+    "clean:windows": "scripts\\docker-local.bat cleanup",
     "build": "tsc"
   },
   "dependencies": {},

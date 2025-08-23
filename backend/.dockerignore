@@ -1,0 +1,55 @@
+# Node.js
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist
+build
+*.tsbuildinfo
+
+# Development files
+src/**/*.spec.ts
+src/**/*.test.ts
+test/
+coverage/
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Environment files (should be set in container)
+.env
+.env.local
+.env.*.local
+
+# Documentation
+*.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+Jenkinsfile
+
+# Docker
+Dockerfile
+.dockerignore
+
+# ESLint and Prettier
+.eslintrc*
+.prettierrc*
+eslint.config.*
+
+# TypeScript config (keep for build stage)
+
+# Jest
+jest.config.js
