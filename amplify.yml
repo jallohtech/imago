@@ -3,13 +3,13 @@ applications:
   - appRoot: frontend
     env:
       variables:
-        # Environment variables from your GitHub Actions
+        # Environment variables for Next.js
         NEXT_PUBLIC_API_URL: http://3.127.233.112:3001
         NEXT_PUBLIC_APP_NAME: IMAGO Media Search
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
-        # Node.js version
+        # Node.js version - match your development environment
         NODE_VERSION: '20'
-        # Disable Turbopack for Amplify builds
+        # Disable Turbopack for Amplify builds (compatibility)
         TURBOPACK: '0'
     backend:
       phases:
@@ -19,15 +19,38 @@ applications:
       phases:
         preBuild:
           commands:
+            - echo "=== Pre-build Phase ==="
             - echo "Node version:"
             - node --version
             - npm --version
+            - echo "Current directory:"
+            - pwd
+            - echo "Directory contents:"
+            - ls -la
             - echo "Installing dependencies..."
-            - npm ci
+            - npm ci --verbose
+            - echo "Dependencies installed successfully"
+            - echo "Checking Next.js installation:"
+            - npx next --version
         build:
           commands:
-            - echo "Building Next.js application without Turbopack..."
-            - npm run build -- --no-turbopack || next build
+            - echo "=== Build Phase ==="
+            - echo "Building Next.js application for production..."
+            - echo "Environment variables:"
+            - echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL"
+            - echo "NEXT_PUBLIC_APP_NAME=$NEXT_PUBLIC_APP_NAME"
+            - echo "NEXT_PUBLIC_ITEMS_PER_PAGE=$NEXT_PUBLIC_ITEMS_PER_PAGE"
+            - echo "Building without Turbopack for Amplify compatibility..."
+            - npx next build
+            - echo "Build completed successfully"
+        postBuild:
+          commands:
+            - echo "=== Post-build Phase ==="
+            - echo "Build directory contents:"
+            - ls -la .next/
+            - echo "Static files:"
+            - ls -la .next/static/ || echo "No static directory found"
+            - echo "Deployment ready"
       artifacts:
         baseDirectory: .next
         files:
