@@ -43,12 +43,12 @@ COPY --from=build /app/package*.json ./
 RUN chown -R nestjs:nodejs /app
 USER nestjs
 
-# Expose port
-# Change these lines in your Dockerfile:
-EXPOSE 3001  # Changed from 3000
+# Expose port (changed from 3000 to 3001)
+EXPOSE 3001
 
+# Add health check (changed port from 3000 to 3001)
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-  CMD curl -f http://localhost:3001/health || exit 1  # Changed from 3000
+  CMD curl -f http://localhost:3001/health || exit 1
 
 # Start the application
 CMD ["node", "dist/main"]
