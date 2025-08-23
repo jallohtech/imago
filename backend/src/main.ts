@@ -27,8 +27,13 @@ async function bootstrap() {
         optionsSuccessStatus: 204,
     });
 
-    // Change this line to use port 3001 as default
-    await app.listen(process.env.PORT ?? 3001, '0.0.0.0');
+    const port = process.env.PORT ?? 3001;
+    const host = '0.0.0.0';
+
+    await app.listen(port, host);
+
+    // Add this logging to confirm what's happening
+    console.log(`Application is running on: http://${host}:${port}`);
 }
 bootstrap().catch((error) => {
     console.error('Error starting the application:', error);
