@@ -1,0 +1,33 @@
+version: 1
+applications:
+  - appRoot: frontend
+    env:
+      variables:
+        # Environment variables from your GitHub Actions
+        NEXT_PUBLIC_API_URL: http://3.127.233.112:3001
+        NEXT_PUBLIC_APP_NAME: IMAGO Media Search
+        NEXT_PUBLIC_ITEMS_PER_PAGE: 20
+        # Node.js version
+        NODE_VERSION: '20'
+    backend:
+      phases:
+        build:
+          commands: []
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - echo "Installing dependencies..."
+            - npm ci
+        build:
+          commands:
+            - echo "Building Next.js application..."
+            - npm run build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - .next/cache/**/*
