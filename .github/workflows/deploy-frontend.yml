@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-central-1
   AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
 
 jobs:
