@@ -9,7 +9,7 @@ export default registerAs('elasticsearch', () => ({
   },
   tls: {
     // Allow self-signed certificates in development
-    rejectUnauthorized: process.env.NODE_ENV === 'production',
+    rejectUnauthorized: process.env.ELASTICSEARCH_REJECT_UNAUTHORIZED === 'true' || false,
     // Optional: Path to CA certificate file
     ca: process.env.ELASTICSEARCH_CA_CERT,
   },
