@@ -3,7 +3,7 @@ applications:
   - appRoot: frontend
     env:
       variables:
-        NEXT_PUBLIC_API_URL: http://3.127.233.112:3001
+        NEXT_PUBLIC_API_URL: http://3.64.178.87:3001
         NEXT_PUBLIC_APP_NAME: IMAGO Media Search
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
         NODE_VERSION: '20'
