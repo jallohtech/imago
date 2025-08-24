@@ -4,14 +4,15 @@ const BACKEND_URL = process.env.BACKEND_URL || 'http://3.64.178.87:3001';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const path = params.path.join('/');
+  const { path } = await params;
+  const pathString = path.join('/');
   const url = new URL(request.url);
   const queryString = url.search;
   
   try {
-    const response = await fetch(`${BACKEND_URL}/${path}${queryString}`, {
+    const response = await fetch(`${BACKEND_URL}/${pathString}${queryString}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -30,13 +31,14 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const path = params.path.join('/');
+  const { path } = await params;
+  const pathString = path.join('/');
   const body = await request.json();
   
   try {
-    const response = await fetch(`${BACKEND_URL}/${path}`, {
+    const response = await fetch(`${BACKEND_URL}/${pathString}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
