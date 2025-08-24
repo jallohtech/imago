@@ -21,7 +21,7 @@ applications:
           commands:
             - echo "Build completed successfully"
       artifacts:
-        baseDirectory: .next
+        baseDirectory: out
         files:
           - '**/*'
       cache:
