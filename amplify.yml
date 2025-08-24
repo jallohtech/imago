@@ -3,54 +3,23 @@ applications:
   - appRoot: frontend
     env:
       variables:
-        # Environment variables for Next.js
         NEXT_PUBLIC_API_URL: http://3.127.233.112:3001
         NEXT_PUBLIC_APP_NAME: IMAGO Media Search
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
-        # Node.js version - match your development environment
         NODE_VERSION: '20'
-        # Disable Turbopack for Amplify builds (compatibility)
-        TURBOPACK: '0'
-    backend:
-      phases:
-        build:
-          commands: []
     frontend:
       phases:
         preBuild:
           commands:
-            - echo "=== Pre-build Phase ==="
-            - echo "Node version:"
-            - node --version
-            - npm --version
-            - echo "Current directory:"
-            - pwd
-            - echo "Directory contents:"
-            - ls -la
             - echo "Installing dependencies..."
-            - npm ci --verbose
-            - echo "Dependencies installed successfully"
-            - echo "Checking Next.js installation:"
-            - npx next --version
+            - npm ci
         build:
           commands:
-            - echo "=== Build Phase ==="
-            - echo "Building Next.js application for production..."
-            - echo "Environment variables:"
-            - echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL"
-            - echo "NEXT_PUBLIC_APP_NAME=$NEXT_PUBLIC_APP_NAME"
-            - echo "NEXT_PUBLIC_ITEMS_PER_PAGE=$NEXT_PUBLIC_ITEMS_PER_PAGE"
-            - echo "Building without Turbopack for Amplify compatibility..."
-            - npx next build
-            - echo "Build completed successfully"
+            - echo "Building Next.js application..."
+            - npm run build
         postBuild:
           commands:
-            - echo "=== Post-build Phase ==="
-            - echo "Build directory contents:"
-            - ls -la .next/
-            - echo "Static files:"
-            - ls -la .next/static/ || echo "No static directory found"
-            - echo "Deployment ready"
+            - echo "Build completed successfully"
       artifacts:
         baseDirectory: .next
         files:
