@@ -1,6 +1,7 @@
 version: 1
 applications:
   - appRoot: frontend
+    platform: WEB_COMPUTE
     env:
       variables:
         NEXT_PUBLIC_API_URL: http://3.64.178.87:3001
@@ -8,6 +9,7 @@ applications:
         NEXT_PUBLIC_APP_NAME: IMAGO Media Search
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
         NODE_VERSION: '20'
+        AMPLIFY_NEXTJS_EXPERIMENTAL_TRACE: true
     frontend:
       phases:
         preBuild:
@@ -18,8 +20,6 @@ applications:
           commands:
             - echo "Building Next.js application..."
             - npm run build
-        postBuild:
-          commands:
             - echo "Build completed successfully"
       artifacts:
         baseDirectory: .next
