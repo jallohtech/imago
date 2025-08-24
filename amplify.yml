@@ -9,6 +9,8 @@ applications:
         NEXT_PUBLIC_APP_NAME: IMAGO Media Search
         NEXT_PUBLIC_ITEMS_PER_PAGE: 20
         NODE_VERSION: '20'
+    compute:
+      runtime: nodejs20.x
     frontend:
       phases:
         preBuild:
